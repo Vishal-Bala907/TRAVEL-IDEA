@@ -1,0 +1,14 @@
+.icon {
+  position: absolute;
+  top: 0px;
+  /* left: 0px; */
+  right: 0px;
+  /* margin-top: 6%; */
+  /* margin-right: 5%; */
+  font-size: xx-large;
+  font-weight: bolder;
+  cursor: pointer;
+  height: 100%;
+  padding-right: 5%;
+  color: #0037b7;
+}

@@ -1,0 +1,15 @@
+.searchIcon {
+  color: white;
+  background-color: blue;
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+  padding: 12px;
+}
+.searchIcon:hover{
+  color: blue;
+  background-color: white;
+  border:1px solid rgba(0, 0, 0, 0.29);
+  box-shadow: 3px 3px 10px rgba(0, 57, 174, 0.37) inset, -1px -1px 0 rgba(0, 43, 143, 0.1);
+  transition: all .5s ease-in-out;
+}

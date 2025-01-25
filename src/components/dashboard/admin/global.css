@@ -1,0 +1,6 @@
+.bootstrap-scope {
+  all: initial; /* Reset all styles */
+}
+.bootstrap-scope * {
+  all: unset; /* Reset nested elements */
+}

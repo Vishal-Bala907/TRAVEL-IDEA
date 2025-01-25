@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "NEXA-BOLD";
+  src: url("/fonts/Nexa-Bold.otf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+.NEXA-BOLD {
+  font-family: "NEXA-BOLD";
+}
+
+@font-face {
+  font-family: "MyFont";
+  src: url("/fonts/MyFont/MyFont-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+}
