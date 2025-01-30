@@ -4,6 +4,7 @@ import store, { persistor } from "../components/redux/configStore";
 import React, { useEffect } from "react";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import SessionExpiredHandler from "../components/server/SessionExpiredHandler";
 
 const MainProvider = ({ children }) => {
   const router = useRouter();
@@ -18,6 +19,7 @@ const MainProvider = ({ children }) => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
+        <SessionExpiredHandler />
         {children}
       </PersistGate>
     </Provider>
