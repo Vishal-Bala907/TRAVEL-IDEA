@@ -13,7 +13,7 @@ const ProdList = () => {
 
   const [filter, setFilter] = useState(null);
   return (
-    <div className="bg-[#c1ebff63] py-5 pl-6 pr-4 md:pl-12 md:pr-12 xl:pl-20 xl:pr-20">
+    <div className="bg-[#d2b4f857] py-5 pl-6 pr-4 md:pl-12 md:pr-12 xl:pl-20 xl:pr-20">
       <Search setFilter={setFilter} />
       <Items filter={filter} />
       <button

@@ -101,7 +101,7 @@ const EmbassyFeesStructureForm = ({ onSubmit }) => {
         </Button>
         <Divider className="mb-4" />
         <Button type="submit" variant="contained" color="primary" fullWidth>
-          Submit
+          Add Fees
         </Button>
       </form>
     </div>

@@ -41,7 +41,7 @@ const Item = ({ item }) => {
 
         <div className="mt-4">
           <p className="text-black">Get Visa in</p>
-          <p className="text-black font-bold">⚡️ {item.waitingTime} days</p>
+          <p className="text-black font-bold">✈ {item.waitingTime} days</p>
         </div>
       </div>
     </div>

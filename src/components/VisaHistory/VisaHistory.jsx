@@ -18,6 +18,8 @@ import { FaPassport, FaMapMarkerAlt } from "react-icons/fa";
 import { FaRegCircleCheck } from "react-icons/fa6";
 import ConfirmChoiceModal from "../confirmChoiceModal/ConfirmChoiceModal";
 import Pagination from "../archivedVisas/Pagination";
+import { markVisaCompleted } from "../server/admin/admin";
+import { toast } from "react-toastify";
 const VisaHistory = ({ status }) => {
   //   console.log("status prop:", status); // Debugging
 
@@ -86,6 +88,17 @@ const VisaHistory = ({ status }) => {
         });
     }
   }, [phone, status, role, totalPages]);
+
+  const handleMarkVisaCompleted = (visa) => {
+    markVisaCompleted(visa)
+      .then((data) => {
+        toast.success("Done...");
+        location.reload();
+      })
+      .catch((err) => {
+        toast.error("unable to mark completed");
+      });
+  };
 
   if (loading) {
     return <GridLoaderSpinner />;
@@ -165,7 +178,12 @@ const VisaHistory = ({ status }) => {
                   </td>
                   {
                     <td className="border px-4 py-3 text-sm">
-                      <button className="flex items-center justify-center px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors">
+                      <button
+                        onClick={() => {
+                          handleMarkVisaCompleted(visa);
+                        }}
+                        className="flex items-center justify-center px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors"
+                      >
                         <FaRegCircleCheck className="mr-2" />
                         Mark As Completed
                       </button>

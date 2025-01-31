@@ -26,10 +26,18 @@ const DropDown = () => {
         minWidth: "200px",
         width: "fit-content",
         marginRight: "10px",
+        color: "black",
+        backgroundColor: "white",
       }}
     >
-      <InputLabel id="demo-simple-select-label">Admin</InputLabel>
+      <InputLabel
+        id="demo-simple-select-label"
+        sx={{ color: "black", outline: "black" }}
+      >
+        Admin
+      </InputLabel>
       <Select
+        sx={{ color: "black", border: "2px solid black", outline: "black" }}
         labelId="demo-simple-select-label"
         id="demo-simple-select"
         label="Admin"

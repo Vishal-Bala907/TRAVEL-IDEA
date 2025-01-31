@@ -12,37 +12,26 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { getDataByDate } from "../../../server/admin/admin";
+import GridLoaderSpinner from "../../../spinner/GridLoaderSpinner";
 
 function VisaChartWithFilter() {
   const [timeRange, setTimeRange] = useState("");
   const [selectedDate, setSelectedDate] = useState(null);
   const [quantityData, setQuantityData] = useState([
     { name: "v1", quantity: 9000 },
-    { name: "v2", quantity: 3000 },
-    { name: "v3", quantity: 2000 },
-    { name: "v4", quantity: 2780 },
-    { name: "v5", quantity: 1890 },
-    { name: "v6", quantity: 2390 },
-    { name: "v7", quantity: 3490 },
-    { name: "v8", quantity: 5590 },
   ]);
-  const [incomeData, setIncomeData] = useState([
-    { name: "v1", income: 5000 },
-    { name: "v2", income: 4000 },
-    { name: "v3", income: 3000 },
-    { name: "v4", income: 3780 },
-    { name: "v5", income: 2890 },
-    { name: "v6", income: 3390 },
-    { name: "v7", income: 4490 },
-  ]);
+  const [incomeData, setIncomeData] = useState([{ name: "v1", income: 5000 }]);
 
   const handleChange = (event) => {
     setTimeRange(event.target.value);
   };
 
+  const [loading, setLoading] = useState(false);
+
   const handleDateChange = (event) => {
     setSelectedDate(event.target.value);
     console.log(event.target.value);
+    setLoading(true);
     getDataByDate(event.target.value)
       .then((data) => {
         console.log(data);
@@ -68,9 +57,14 @@ function VisaChartWithFilter() {
       })
       .catch((error) => {
         console.error(error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
-
+  if (loading) {
+    return <GridLoaderSpinner />;
+  }
   const chartData = [
     {
       title: "Quantity vs VisaType",

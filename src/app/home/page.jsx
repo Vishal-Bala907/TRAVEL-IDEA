@@ -1,3 +1,4 @@
+import Header2 from "../../components/header/Header2";
 import Bottom from "../../components/bottom/Bottom";
 import Brands from "../../components/brands/Brands";
 import Footer from "../../components/footer/Footer";
@@ -11,14 +12,15 @@ import React from "react";
 const page = () => {
   return (
     <div>
-      <Header />
+      {/* <Header />
+      <Header2 /> */}
       <Hero />
       <ProdList />
       <Brands />
       <Testimonials />
       <Howitworks />
       <Bottom />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

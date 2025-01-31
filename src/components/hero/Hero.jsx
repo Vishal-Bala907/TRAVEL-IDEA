@@ -16,31 +16,32 @@ import "../../../public/fonts/fonts-css/nexa.css";
 
 const Hero = () => {
   const [upperText, setUpperText] = useState({
-    text: "smart",
+    text: "reliable",
     color: "#80C4E9",
-    para: "dedicated visa experts",
+    para: "trusted visa solutions",
     paraColor: "#b1f0f773",
     icon: "user",
   });
+
   const upperTexts = [
     {
-      text: "smart",
+      text: "reliable",
       color: "#80C4E9",
-      para: "dedicated visa experts",
+      para: "trusted visa solutions",
       paraColor: "#b1f0f773",
       icon: "user",
     },
     {
-      text: "fast",
+      text: "efficient",
       color: "#7E5CAD",
-      para: "on time, every time",
+      para: "swift processing, zero hassle",
       paraColor: "#7e5cad47",
       icon: "clocks",
     },
     {
-      text: "gauranteed",
+      text: "assured",
       color: "#16C47F",
-      para: "99.9% approval rate",
+      para: "high success rate guaranteed",
       paraColor: "#16c47f36",
       icon: "check",
     },

@@ -125,3 +125,13 @@ export const getAllICMData = async () => {
     throw err;
   }
 };
+export const markVisaCompleted = async (visa) => {
+  console.log(visa);
+
+  try {
+    const response = await apiClient.post(`/admin/visa/mark/completed`, visa);
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
+};

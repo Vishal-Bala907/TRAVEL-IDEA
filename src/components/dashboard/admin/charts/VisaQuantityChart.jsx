@@ -16,11 +16,13 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { getAllQtyData } from "../../../server/admin/admin";
+import GridLoaderSpinner from "../../../spinner/GridLoaderSpinner";
 // import { log } from "console";
 
 function VisaQuantityChart() {
   const [timeRange, setTimeRange] = useState("");
   const [incomeData, setIncomeData] = useState([{ name: "v1", income: 5000 }]);
+  const [loading, setLoading] = useState(false);
 
   // Sample data for different time ranges
   const [dataPreviousWeek, setDataPreviousWeek] = useState([
@@ -36,6 +38,7 @@ function VisaQuantityChart() {
   ]);
 
   useEffect(() => {
+    setLoading(true);
     getAllQtyData()
       .then((data) => {
         console.log(data);
@@ -67,6 +70,9 @@ function VisaQuantityChart() {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
 
@@ -79,6 +85,10 @@ function VisaQuantityChart() {
     { title: "Previous Month", data: dataPreviousMonth, color: "#82ca9d" },
     { title: "Previous Year", data: dataPreviousYear, color: "#ff7300" },
   ];
+
+  if (loading) {
+    return <GridLoaderSpinner />;
+  }
 
   return (
     <div className="p-6 font-sans">

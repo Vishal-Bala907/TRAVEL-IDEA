@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Item from "./Item";
 import { useSelector } from "react-redux";
 import GridLoaderSpinner from "../spinner/GridLoaderSpinner";
+import VisaNotFound from "../not-found/VisaNotFound";
 
 const ItemsList = ({ filter }) => {
   const items = useSelector((state) => state.visas.visas);
@@ -25,7 +26,7 @@ const ItemsList = ({ filter }) => {
   }
 
   if (!visaItems.length) {
-    return <div>No Visas available</div>;
+    return <VisaNotFound />;
   }
 
   return (

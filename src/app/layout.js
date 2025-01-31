@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "../components/header/Header";
+import Header2 from "../components/header/Header2";
 import Footer from "../components/footer/Footer";
 import { ToastContainer } from "react-toastify";
 import MainProvider from "./MainProvider";
@@ -29,7 +30,8 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased custom-scrollbar`}
       >
         <MainProvider>
-          <Header />
+          {/* <Header /> */}
+          <Header2 />
           {children}
           <ToastContainer />
           <Footer />

@@ -32,14 +32,14 @@ const Header = () => {
   }, [mobile]);
 
   return (
-    <header className="bg-white ">
+    <header className="bg-[#331749] text-white ">
       <div className="mx-auto px-4 py-6 pl-10 xl:px-20  lg:flex lg:justify-between sm:grid sm:grid-cols-1 sm:grid-rows-2 sm:justify-center sm:items-center cursor-pointer">
         <img
           onClick={() => {
             router.push("/");
           }}
           className="max-w-[140px]"
-          src="/img/general/logoDark.png"
+          src="/img/Capture.PNG"
           alt="logo"
         />
 
@@ -77,9 +77,7 @@ const Header = () => {
                 }}
               />
             </Tooltip>
-            {/* <p className="text-dark absolute top-[-14px] right-[-4px]">
-              {paymentCount}
-            </p> */}
+
           </div>
           {role !== "ROLE_ADMIN" && (
             <div className="relative">

@@ -16,6 +16,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { getAllICMData } from "../../../server/admin/admin";
+import GridLoaderSpinner from "../../../spinner/GridLoaderSpinner";
 
 // // Sample data for the charts
 // const dataPreviousWeek = [
@@ -50,6 +51,7 @@ import { getAllICMData } from "../../../server/admin/admin";
 
 function VisaIncomeChart() {
   const [timeRange, setTimeRange] = useState("");
+  const [loading, setLoading] = useState(false);
   // Sample data for different time ranges
   const [dataPreviousWeek, setDataPreviousWeek] = useState([
     { name: "v1", income: 90 },
@@ -64,6 +66,7 @@ function VisaIncomeChart() {
   ]);
 
   useEffect(() => {
+    setLoading(true);
     getAllICMData()
       .then((data) => {
         // console.log(data);
@@ -98,6 +101,9 @@ function VisaIncomeChart() {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
 
@@ -110,7 +116,9 @@ function VisaIncomeChart() {
     { title: "Previous Month", data: dataPreviousMonth, color: "#82ca9d" },
     { title: "Previous Year", data: dataPreviousYear, color: "#ff7300" },
   ];
-
+  if (loading) {
+    return <GridLoaderSpinner />;
+  }
   return (
     <div className="p-6 font-sans">
       <h2 className="text-center text-gray-700 text-2xl mb-6">
