@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React, { useState } from "react";
 import { loginHandler } from "../../../components/server/register";
 import { toast } from "react-toastify";
@@ -37,10 +37,11 @@ const page = () => {
         toast.error("Unable to log in", { position: "top-center" });
       });
   };
+
   return (
     <section className="h-[100vh] flex items-center justify-center bg-[#F5F9FF] xxxs:flex-col-reverse xxxs:gap-8 xxxs:py-12 xxs:min-h-screen md:flex-row md:gap-x-6 md:px-12 lg:gap-x-12 lg:px-0 xl:gap-x-28">
       {/* <!-- Left Content --> */}
-      <main className="xxxs:w-11/12 md:w-1/2 lg:w-[418px] xl:w-[40%]">
+      <main className="xxxs:w-11/12 md:w-1/2 lg:w-[418px] xl:w-[40%] hidden md:block">
         <section className="flex h-full flex-col items-center justify-center gap-4">
           <div className="font-bold text-center xxxs:text-[17px] sm:text-xl lg:text-2xl">
             <p className="font-lexend">1,00,000+ people like you trust</p>
@@ -136,6 +137,9 @@ const page = () => {
               className="w-full bg-transparent text-base outline-none pl-4"
             />
           </div>
+          {/* <span className="block text-xs text-red-500 mt-2">
+            Invalid Number
+          </span> */}
           {/* <span className="block text-xs text-red-500 mt-2">
             Invalid Number
           </span> */}
