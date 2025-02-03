@@ -16,10 +16,10 @@ import {
 } from "react-icons/ai";
 import { FaPassport, FaMapMarkerAlt } from "react-icons/fa";
 import { FaRegCircleCheck } from "react-icons/fa6";
-import ConfirmChoiceModal from "../confirmChoiceModal/ConfirmChoiceModal";
 import Pagination from "../archivedVisas/Pagination";
 import { markVisaCompleted } from "../server/admin/admin";
 import { toast } from "react-toastify";
+import {confirmAlert} from "react-confirm-alert";
 const VisaHistory = ({ status }) => {
   //   console.log("status prop:", status); // Debugging
 
@@ -33,15 +33,28 @@ const VisaHistory = ({ status }) => {
   const [loading, setLoading] = useState(false);
   const [selectedVisa, setSelectedVisa] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+
+  const handleConfirmMarkCompleted = (visa) => {
+
+    confirmAlert({
+      title: "Confirm Completion",
+      message: "Are you sure you want to mark this visa as completed?",
+      buttons: [
+        {
+          label: "Confirm",
+          onClick: () => handleMarkVisaCompleted(visa),
+        },
+        {
+          label: "Cancel",
+        },
+      ],
+    });
+    setIsConfirmModalOpen(false);
+
   };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
 
-  const handleConfirm = () => {};
 
   useEffect(() => {
     setLoading(true);
@@ -176,19 +189,20 @@ const VisaHistory = ({ status }) => {
                       View More
                     </button>
                   </td>
-                  {
-                   status === 'pending' && (  <td className="border px-4 py-3 text-sm">
+                  {status === "pending" && (
+                      <td className="border px-4 py-3 text-sm">
                       <button
                         onClick={() => {
-                          handleMarkVisaCompleted(visa);
+                          handleConfirmMarkCompleted(visa);
+                          setIsConfirmModalOpen(true);
                         }}
                         className="flex items-center justify-center px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors"
                       >
                         <FaRegCircleCheck className="mr-2" />
                         Mark As Completed
                       </button>
-                    </td>)
-                  }
+                      </td>
+                  )}
                 </tr>
               ))}
             </tbody>
@@ -409,11 +423,6 @@ const VisaHistory = ({ status }) => {
           </div>
         </div>
       )}
-      <ConfirmChoiceModal
-        open={isModalOpen}
-        onClose={handleCloseModal}
-        onConfirm={handleConfirm}
-      />
       <div className="flex justify-center my-4">
         <Pagination
           currentPage={currentPage}
