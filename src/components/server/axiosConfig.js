@@ -25,6 +25,7 @@ apiClient.interceptors.response.use(
       const { status } = error.response;
       console.info("Invalid or expired token detected.");
 
+      // sout
       if (status === 400 || status === 401) {
         // localStorage.removeItem("token");
         // alert("emmittig");
