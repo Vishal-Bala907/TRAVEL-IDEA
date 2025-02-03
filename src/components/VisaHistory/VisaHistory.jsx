@@ -177,7 +177,7 @@ const VisaHistory = ({ status }) => {
                     </button>
                   </td>
                   {
-                    <td className="border px-4 py-3 text-sm">
+                   status === 'pending' && (  <td className="border px-4 py-3 text-sm">
                       <button
                         onClick={() => {
                           handleMarkVisaCompleted(visa);
@@ -187,7 +187,7 @@ const VisaHistory = ({ status }) => {
                         <FaRegCircleCheck className="mr-2" />
                         Mark As Completed
                       </button>
-                    </td>
+                    </td>)
                   }
                 </tr>
               ))}
