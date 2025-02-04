@@ -26,9 +26,9 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="bg-[#331749] text-white py-8">
+    <footer className="bg-[#093258] text-white py-8">
       <div className="container mx-auto px-4">
-        <div className="flex flex-wrap flex-col md:flex-row  justify-between">
+        <div className="flex flex-wrap flex-col justify-center md:flex-row items-center md:justify-between">
           <div className="w-1/2 md:w-1/3 mb-6 md:mb-0">
             {/* <h2 className="text-xl font-bold mb-2">travel-idea</h2> */}
             <Image
@@ -42,15 +42,16 @@ const Footer = () => {
             <div className="mb-4">
               <h3 className="font-semibold">Delhi</h3>
               <p>Travelidea, XYZ Street, New Delhi, India</p>
-              <iframe
-                width="600"
-                height="450"
-                className="border-0"  
-                loading="lazy"
-                allowFullScreen
-                referrerPolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=New+Delhi"
-              ></iframe>
+              <div className="w-full mt-2">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115552.50686017331!2d75.88074163256837!3d25.168943014590713!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd5b347eb62d%3A0x37205b715389640!2sDelhi!5e0!3m2!1sen!2sin!4v1738670692193!5m2!1sen!2sin"
+                  width="200"
+                  height="100"
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
             </div>
             {/* <hr className="w-48 h-1 my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700" />
 
