@@ -4,6 +4,7 @@ import { SiTicktick } from "react-icons/si";
 import { useSelector } from "react-redux";
 import GridLoaderSpinner from "../spinner/GridLoaderSpinner";
 import testimonials from "./text";
+import style from "./Hero3.module.css";
 
 const Hero3 = ({ name }) => {
   // console.log(name)
@@ -26,7 +27,7 @@ const Hero3 = ({ name }) => {
     setLoading(true);
     visas.forEach((visa) => {
       if (visa.countyName === name) {
-        console.log(visa)
+        console.log(visa);
         sethighestWaitingTime(visa.waitingTime);
         setVisaImage(`${process.env.NEXT_PUBLIC_BASE_URL}/${visa.bannerImage}`);
         return;
@@ -36,14 +37,13 @@ const Hero3 = ({ name }) => {
     const randomNumber = Math.floor(Math.random() * 25) + 1;
     setVisaImage2(`/img/Assets/product_${randomNumber}.png`);
     setText(testimonials[randomNumber]);
-        setLoading(false);
-
-  }, [name,highestWaitingTime]);
+    setLoading(false);
+  }, [name, highestWaitingTime]);
 
   let finishDate = new Date();
 
   // Add 14 days to the date
-  console.log(highestWaitingTime)
+  console.log(highestWaitingTime);
   finishDate.setDate(finishDate.getDate() + highestWaitingTime);
 
   // Create an array of month names
@@ -75,14 +75,24 @@ const Hero3 = ({ name }) => {
 
   return (
     <div>
-      <section className="flex flex-col items-center">
+      <section
+        className="flex flex-col items-center "
+        style={{
+          backgroundImage: "url('/img/pexels-mikka-384313-1025990.jpg')",
+          backgroundSize: "cover",
+        }}
+      >
         <section className="mb-16 flex w-full max-w-[1100px] flex-col items-center justify-between p-6 pt-4 md:w-11/12 md:flex-row 2xl:w-[70%]">
           <section className="flex w-full flex-col gap-y-5 self-center">
-            <h1 className="text-center text-[32px] font-bold leading-none text-gray-900 md:w-[400px] md:text-left md:text-4xl">
+            <h1
+              className={`text-center text-[32px] font-bold leading-none text-gray-900 md:w-[400px] md:text-left md:text-4xl ${style.countryNameHeader}`}
+            >
               Get your {name} visa
             </h1>
             <div className="flex w-full flex-col items-center md:flex-row">
-              <div className="mb-[22px] flex h-fit w-fit flex-row items-center justify-center rounded-[14px] bg-[#3134c5] p-4 pb-[14px] pt-[9px] text-white md:mr-6">
+              <div
+                className={`${style.dateText} mb-[22px]  flex h-fit w-fit flex-row items-center justify-center rounded-[14px] bg-[#331749] p-4 pb-[14px] pt-[9px]  md:mr-6`}
+              >
                 <img
                   alt="timer"
                   loading="lazy"
@@ -95,18 +105,18 @@ const Hero3 = ({ name }) => {
                   style={{ color: "transparent" }}
                 />
                 <p>
-                  <strong className="text-base font-extrabold">
+                  <strong className="text-base font-extrabold hover:text-[#FFC21D]">
                     Get your visa by {formattedDate(finishDate)}
                   </strong>
                   <br />
-                  <span className="text-base font-normal">
+                  <span className="text-base font-normal  hover:text-[#FFC21D]">
                     if you apply today
                   </span>
                 </p>
               </div>
               <div className="mb-5 flex w-full items-center justify-center md:w-fit md:flex-col xl:flex-row">
                 <div className=" relative mb-0 mr-2 h-6 w-14">
-                  <img
+                  {/* <img
                     alt="review image person 0"
                     loading="lazy"
                     width="24"
@@ -144,11 +154,11 @@ const Hero3 = ({ name }) => {
                       color: "transparent",
                       left: "36px",
                     }}
-                  />
+                  /> */}
                 </div>
-                <p className="text-xs text-slategray-200">
+                {/* <p className="text-xs text-slategray-200">
                   + {Math.floor(Math.random() * 100)}
-                </p>
+                </p> */}
               </div>
             </div>
           </section>
@@ -163,7 +173,7 @@ const Hero3 = ({ name }) => {
               className="h-full w-full rounded-lg border border-whitesmoke-700 object-cover"
               src={visaImage}
             />
-            <div className="absolute -left-4 top-16 flex w-fit items-center rounded-2xl border border-whitesmoke-700 bg-white pl-3 font-inter text-xs text-slategray-200 drop-shadow-2xl md:-left-16">
+            <div className="absolute left-4 top-12 flex w-fit items-center rounded-2xl border border-whitesmoke-700 bg-white pl-3 font-inter text-xs text-slategray-200 drop-shadow-2xl md:-left-16">
               <p className="mr-2 font-inter text-base font-extrabold">98%</p>
               <div className="flex rounded-2xl border border-y-0 border-r-0 border-whitesmoke-700 px-3 py-2">
                 <SiTicktick className="font-inter text-[13px] font-medium mt-0.5 mr-1" />
@@ -172,11 +182,11 @@ const Hero3 = ({ name }) => {
                 </p>
               </div>
             </div>
-            <div
+            {/* <div
               hidden=""
               className="absolute right-2 top-2 rounded-lg bg-[#F7E499] px-2 py-1 font-inter text-xs font-semibold text-[#5B4C0D]"
-            ></div>
-            <div className="absolute -right-4 top-20 flex w-[146px] flex-col overflow-hidden rounded-lg border border-whitesmoke-700 bg-white drop-shadow-sm">
+            ></div> */}
+            <div className="absolute right-1 top-5 flex w-[146px] flex-col overflow-hidden rounded-lg border border-whitesmoke-700 bg-white drop-shadow-sm">
               <img
                 alt="Recommendation Image"
                 loading="lazy"

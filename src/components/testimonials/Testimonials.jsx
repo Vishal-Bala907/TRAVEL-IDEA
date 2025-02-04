@@ -47,7 +47,7 @@ const Testimonials = () => {
                         />
                       </figure>
                       <p className="font-lexend text-xl font-medium leading-9 text-blue-950">
-                        Swaroopa
+                        Rina
                       </p>
                     </div>
                     <div>
@@ -60,10 +60,10 @@ const Testimonials = () => {
                     </div>
                   </div>
                   <h4 className="text-left font-lexend font-normal leading-relaxed text-slate-600">
-                    I was initially apprehensive to avail a service through an
-                    online platform. But, travel-idea’s team exceeded my
-                    expectations. They have been extremely supportive at each
-                    and every step. I highly recommend their services.
+                    I was initially hesitant to use an online service, but the
+                    team at travel-idea made everything so smooth and
+                    hassle-free. Their support was impeccable. Highly
+                    recommended!
                   </h4>
                 </div>
               </article>
@@ -80,7 +80,7 @@ const Testimonials = () => {
                         />
                       </figure>
                       <p className="font-lexend text-xl font-medium leading-9 text-blue-950">
-                        Gursimran
+                        Arvind
                       </p>
                     </div>
                     <div>
@@ -93,9 +93,9 @@ const Testimonials = () => {
                     </div>
                   </div>
                   <h4 className="text-left font-lexend font-normal leading-relaxed text-slate-600">
-                    Absolutely brilliant support. Everything was seamless. Great
-                    experience overall. I availed the services for a short term
-                    Schengen visa.
+                    Excellent service. The process was seamless and quick. I
+                    used their services for a work visa, and everything went
+                    smoothly.
                   </h4>
                 </div>
               </article>
@@ -112,7 +112,7 @@ const Testimonials = () => {
                         />
                       </figure>
                       <p className="font-lexend text-xl font-medium leading-9 text-blue-950">
-                        Hersh
+                        Trần
                       </p>
                     </div>
                     <div>
@@ -124,8 +124,9 @@ const Testimonials = () => {
                       />
                     </div>
                   </div>
-                  <h4 className="text-left font-lexend font-normal leading-relaxed text-slate-600">
-                    Simple, quick, affordable & efficient.
+                  <h4 className="text-left font-lexend  font-normal leading-relaxed text-slate-600">
+                    The service was incredibly easy to use, quick, and
+                    affordable. 
                   </h4>
                 </div>
               </article>
@@ -143,7 +144,7 @@ const Testimonials = () => {
                         />
                       </figure>
                       <p className="font-lexend text-xl font-medium leading-9 text-blue-950">
-                        Varun
+                        Sameer
                       </p>
                     </div>
                     <div>
@@ -156,8 +157,8 @@ const Testimonials = () => {
                     </div>
                   </div>
                   <h4 className="text-left font-lexend font-normal leading-relaxed text-slate-600">
-                    travel-idea made my visa process stress-free. Highly
-                    professional and efficient team.
+                    travel-idea made my visa process easy and stress-free. The
+                    team was extremely professional and helpful throughout.
                   </h4>
                 </div>
               </article>
@@ -175,7 +176,7 @@ const Testimonials = () => {
                         />
                       </figure>
                       <p className="font-lexend text-xl font-medium leading-9 text-blue-950">
-                        Rohit
+                        Ahmad
                       </p>
                     </div>
                     <div>
@@ -188,8 +189,8 @@ const Testimonials = () => {
                     </div>
                   </div>
                   <h4 className="text-left font-lexend font-normal leading-relaxed text-slate-600">
-                    Amazing service! The team guided me throughout the process
-                    and ensured everything was flawless.
+                    The team was highly efficient and helped me with every step
+                    of the visa process. It was a seamless experience.
                   </h4>
                 </div>
               </article>
@@ -207,7 +208,7 @@ const Testimonials = () => {
                         />
                       </figure>
                       <p className="font-lexend text-xl font-medium leading-9 text-blue-950">
-                        Karan
+                        Vikas
                       </p>
                     </div>
                     <div>
@@ -220,8 +221,8 @@ const Testimonials = () => {
                     </div>
                   </div>
                   <h4 className="text-left font-lexend font-normal leading-relaxed text-slate-600">
-                    Efficient and quick service. Highly recommend travel-idea
-                    for visa assistance.
+                    Excellent customer service. The entire process was fast and
+                    easy. Highly recommend for visa-related services.
                   </h4>
                 </div>
               </article>

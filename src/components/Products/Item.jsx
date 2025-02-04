@@ -10,7 +10,7 @@ const Item = ({ item }) => {
   };
   return (
     <div
-      className="bg-white rounded-lg  shadow-md hover:cursor-pointer hover:scale-105 transition duration-200 transform "
+      className="bg-white rounded-lg  hover:shadow-2xl hover:cursor-pointer hover:scale-105 transition duration-200 transform "
       onClick={() => handleStartClick(item)}
     >
       <div className="relative">
@@ -28,12 +28,12 @@ const Item = ({ item }) => {
         </div> */}
       </div>
 
-      <div className="mt-4 px-3 border-b-2">
+      <div className="mt-4 px-3 border-b-2 flex flex-row justify-between">
         <h2 className="text-black text-lg font-bold">{item.countyName}</h2>
-        <span className="text-white">{item.visaType}</span>
+        <span className="text-black">{item.visaType}</span>
       </div>
 
-      <div className="flex justify-between align-center px-3 pb-2">
+      <div className="flex justify-between align-center px-3 pb-2 bg-[#ffc21d] rounded-sm">
         <div className="mt-2 text-black">
           <p className="text-3xl font-bold text-blue-800">₹{item.visaFee}</p>
           <p className="text-sm">+₹{item.serviceFee} (Fees+Tax)</p>

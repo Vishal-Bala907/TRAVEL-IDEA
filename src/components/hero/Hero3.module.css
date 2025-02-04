@@ -1,0 +1,19 @@
+.countryNameHeader {
+  position: relative;
+  background-image: url("/img/pexels-pixabay-255514.jpg"); /* Sets the background color */
+  color: transparent; /* Makes text transparent */
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.dateText {
+  color: white;
+}
+.dateText:hover > span,
+.dateText:hover > strong {
+  background-color: white;
+  color: #ffc21d;
+  border: 1px solid #ffffff;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
