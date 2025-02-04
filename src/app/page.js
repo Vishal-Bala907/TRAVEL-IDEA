@@ -56,7 +56,7 @@ export default function Home() {
       <Brands />
       <Testimonials />
       <Howitworks />
-      <Bottom />
+      {/* <Bottom /> */}
     </Provider>
   );
 }

@@ -1,12 +1,15 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { getBlogData } from "../server/basic/basic";
+import GridLoaderSpinner from "../spinner/GridLoaderSpinner";
 // import dummyBlogData from "../../app/blog/[countryName]/dummyBlogData";
 
 function BlogPageTwo({ countryName, id }) {
   // Find the blog data based on the id
   const [blogData, setBlogData] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
+    setLoading(true);
     getBlogData(id)
       .then((data) => {
         console.log(data);
@@ -14,17 +17,35 @@ function BlogPageTwo({ countryName, id }) {
       })
       .catch((err) => {
         console.error(err);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, [countryName, id]);
 
   // If no blog data is found, display a message
-  if (!blogData || blogData.length < 1) {
+
+  if (loading) {
+    return (<div className="">
+      <GridLoaderSpinner />
+      <h1>Loading...</h1>
+    </div>)
+  }
+
+  if (loading === false && blogData.length <1 ) {
     return (
       <div className="text-center text-red-500 text-2xl mt-10">
         Blog not found!
       </div>
     );
   }
+  // if (countryName && blogData.length < 1) {
+  //   return (
+  //     <div className="">
+  //       <GridLoaderSpinner />
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="max-w-4xl mx-auto p-4 sm:p-6 bg-white shadow-lg rounded-lg">
