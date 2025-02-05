@@ -7,7 +7,7 @@ import { addVisaRequest } from "../redux/slices/VisaRequest";
 import { submitVisaRequest, uploadImage } from "../server/basic/basic";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
-
+import { confirmAlert } from "react-confirm-alert";
 const UploadDocument = ({ setReqId, stage, setStage, id }) => {
   const dispatch = useDispatch();
   const Id = id;
@@ -52,6 +52,26 @@ const UploadDocument = ({ setReqId, stage, setStage, id }) => {
     });
   };
 
+       const handleConfirmMarkCompleted = () => {
+      
+  
+          confirmAlert({
+            title: "Confirmation Required",
+            message:
+              "Are you sure you want to save uploaded documents? Once saved, they cannot be edited.",
+            buttons: [
+              {
+                label: "Confirm",
+                onClick: () => handleSaveDetails(),
+              },
+              {
+                label: "Cancel",
+              },
+            ],
+          });
+  
+      
+        };
   const handleSaveDetails = async () => {
     // Create a deep copy of the visaRequests object
     const updatedVisaRequests = JSON.parse(JSON.stringify(visaRequests));
@@ -93,17 +113,18 @@ const UploadDocument = ({ setReqId, stage, setStage, id }) => {
     submitVisaRequest(phone, updatedVisaRequests, id)
       .then((data) => {
         setReqId(data);
-        toast.success("Visa submitted successfully");
+
+        // Move to the next stage
+        toast.success("Visa submitted successfully 😀😀");
+        setStage(4);
       })
       .catch((err) => {
-        toast.error("Visa not submitted");
+        toast.error("Something went wrong Visa not submitted 😟😟");
       });
 
     // Dispatch the updated visaRequests to the Redux store
     dispatch(addVisaRequest(updatedVisaRequests));
 
-    // Move to the next stage
-    setStage(4);
   };
 
   // Use useEffect to log the updated state
@@ -191,7 +212,7 @@ const UploadDocument = ({ setReqId, stage, setStage, id }) => {
                 ))}
               </div>
               <button
-                onClick={handleSaveDetails}
+                onClick={() =>handleConfirmMarkCompleted()}
                 className="mt-4 w-full py-2 px-4 rounded-md text-white bg-green-500 hover:bg-green-600 font-medium transition-colors duration-150"
               >
                 Save Details

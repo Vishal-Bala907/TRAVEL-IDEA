@@ -20,6 +20,7 @@ import {
   submitVisaRequest,
 } from "../server/basic/basic";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const MakePayment = ({ reqId, setStage, id }) => {
   // console.log("jai shree ram");
@@ -64,6 +65,7 @@ const MakePayment = ({ reqId, setStage, id }) => {
 
   const visas = useSelector((state) => state.visas?.visas || []);
   const Id = id;
+  const router = useRouter();
 
   const visabyId = visas.find((item) => item.id === Number(Id));
   const AppointmentFees = Number(visabyId?.embassyFees?.appointmentFees);
@@ -128,6 +130,7 @@ const MakePayment = ({ reqId, setStage, id }) => {
             const sigId = response.razorpay_signature;
             paymentSuccessFull(paymentId, orderId, sigId, NetTotal)
               .then((data) => {
+                router.push('/')
                 toast.success("payment sucessfull... 😀😀", {
                   position: "top-right",
                 });

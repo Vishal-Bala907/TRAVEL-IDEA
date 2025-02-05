@@ -15,7 +15,7 @@ const VITE_API_URL = "f16a94a303ef3ed524348cd85534f639";
 // const VITE_API_URL = "";
 import { uploadImage } from "../server/basic/basic";
 import ConfirmChoiceModal from '../confirmChoiceModal/ConfirmChoiceModal'
-
+import { FaUpload } from "react-icons/fa"; 
 const initialVisaRequestsState = {
   purposeOfVisit: "",
   appointmentDetails: "",
@@ -381,7 +381,7 @@ const PassportForm = ({ purposeOfVisit, setStage }) => {
       <ToastContainer autoClose={3000} limit={1} />
       <div className="flex justify-center mb-8">
         <div className="date-range-picker-container">
-          <div className="flex flex-wrap flex-col md:flex-row">
+          <div className="flex flex-nowrap flex-col ">
             <div>
               {windowWidth > 768 && (
                 <div className="flex justify-end mt-2.5 ">
@@ -416,9 +416,9 @@ const PassportForm = ({ purposeOfVisit, setStage }) => {
               />
             </div>
             <div className="flex justify-center items-center ">
-              <div className="mt-6 p-4 bg-blue-50 rounded-lg shadow-sm border border-blue-100 w-4/5">
-                <p className="text-lg font-semibold text-blue-800 mb-2 text-center md:text-left">
-                  Selected Date:
+              <div className="mt-6 p-4 bg-blue-50 rounded-lg shadow-sm border items-center  border-blue-100 w-full">
+                <p className="text-lg   font-semibold text-blue-800 mb-2 text-center ">
+                  Selected Dates
                 </p>
                 <div className="flex flex-col md:flex-row items-center justify-center md:justify-between space-y-4 md:space-y-0 md:space-x-4">
                   <div className="text-center">
@@ -510,11 +510,12 @@ const PassportForm = ({ purposeOfVisit, setStage }) => {
                       </button>
                     </>
                   ) : (
-                    <img
-                      src="/img/general/user_passport_front.png"
-                      alt="Passport Front Placeholder"
-                      className="mt-4 w-3/4"
-                    />
+                    <label
+                      htmlFor="passport-front-upload"
+                      className="w-full flex flex-col items-center justify-center p-6 border-2 border-dashed border-gray-300 rounded-lg  transition duration-200 ease-in-out"
+                    >
+                      <FaUpload className="text-3xl text-gray-400 mb-2" />
+                    </label>
                   )}
                 </div>
               </div>
@@ -544,11 +545,12 @@ const PassportForm = ({ purposeOfVisit, setStage }) => {
                     </button>
                   </div>
                 ) : (
-                  <img
-                    src="/img/general/user_passport_front.png"
-                    alt="Passport Back Placeholder"
-                    className="mt-4 w-3/4"
-                  />
+                  <label
+                    htmlFor="passport-front-upload"
+                    className="w-full flex flex-col items-center justify-center p-6 border-2 border-dashed border-gray-300 rounded-lg  transition duration-200 ease-in-out"
+                  >
+                    <FaUpload className="text-3xl text-gray-400 mb-2" />
+                  </label>
                 )}
               </div>
             </>
@@ -561,11 +563,11 @@ const PassportForm = ({ purposeOfVisit, setStage }) => {
               <div className="font-lexend text-sm font-medium bg-yellow-200 text-neutral-light-n800 p-4 rounded-lg border border-yellow-200">
                 <div className="font-bold text-yellow-800">
                   <BsStars className={"inline mr-2 "} />
-                  Autofill basic details
+                  Pre-Fill Your Details Instantly
                 </div>
                 <p className="mt-2 text-white-800">
-                  Upload passport to autofill your basic details and start your
-                  application
+                  Upload your passport to auto-populate your information and
+                  kickstart your application.
                 </p>
               </div>
             </div>
@@ -584,11 +586,11 @@ const PassportForm = ({ purposeOfVisit, setStage }) => {
                   Traveler&#39;s Basic Details
                 </h2>
                 <form
-                    className="space-y-6"
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      handleSubmit(e);
-                    }}
+                  className="space-y-6"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handleSubmit(e);
+                  }}
                 >
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
@@ -596,22 +598,22 @@ const PassportForm = ({ purposeOfVisit, setStage }) => {
                         Given Name
                       </label>
                       <input
-                          type="text"
-                          placeholder="Given Name"
-                          value={
-                            visaRequests.visaRequest[tabValue].request.visa
-                                .givenName
-                          }
-                          onChange={(e) =>
-                              handleFormChange(
-                                  tabValue,
-                                  "givenName",
-                                  e.target.value
-                              )
-                          }
-                          className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
-                          required
-                          disabled={!isImageUploaded}
+                        type="text"
+                        placeholder="Given Name"
+                        value={
+                          visaRequests.visaRequest[tabValue].request.visa
+                            .givenName
+                        }
+                        onChange={(e) =>
+                          handleFormChange(
+                            tabValue,
+                            "givenName",
+                            e.target.value
+                          )
+                        }
+                        className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
+                        required
+                        disabled={!isImageUploaded}
                       />
                     </div>
                     <div className="space-y-2">
@@ -619,18 +621,18 @@ const PassportForm = ({ purposeOfVisit, setStage }) => {
                         Surname
                       </label>
                       <input
-                          type="text"
-                          placeholder="Surname"
-                          value={
-                            visaRequests.visaRequest[tabValue].request.visa
-                                .surname
-                          }
-                          onChange={(e) =>
-                              handleFormChange(tabValue, "surname", e.target.value)
-                          }
-                          className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
-                          required
-                          disabled={!isImageUploaded}
+                        type="text"
+                        placeholder="Surname"
+                        value={
+                          visaRequests.visaRequest[tabValue].request.visa
+                            .surname
+                        }
+                        onChange={(e) =>
+                          handleFormChange(tabValue, "surname", e.target.value)
+                        }
+                        className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
+                        required
+                        disabled={!isImageUploaded}
                       />
                     </div>
                   </div>
@@ -641,15 +643,15 @@ const PassportForm = ({ purposeOfVisit, setStage }) => {
                         Sex
                       </label>
                       <select
-                          value={
-                            visaRequests.visaRequest[tabValue].request.visa.sex
-                          }
-                          onChange={(e) =>
-                              handleFormChange(tabValue, "sex", e.target.value)
-                          }
-                          className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
-                          required
-                          disabled={!isImageUploaded}
+                        value={
+                          visaRequests.visaRequest[tabValue].request.visa.sex
+                        }
+                        onChange={(e) =>
+                          handleFormChange(tabValue, "sex", e.target.value)
+                        }
+                        className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
+                        required
+                        disabled={!isImageUploaded}
                       >
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
@@ -661,26 +663,26 @@ const PassportForm = ({ purposeOfVisit, setStage }) => {
                         Date of Birth
                       </label>
                       <input
-                          type="date"
-                          value={
-                            visaRequests.visaRequest[tabValue].request.visa
-                                .dateOfBirth
-                                ? dayjs(
-                                    visaRequests.visaRequest[tabValue].request.visa
-                                        .dateOfBirth
-                                ).format("YYYY-MM-DD")
-                                : ""
-                          }
-                          onChange={(e) =>
-                              handleFormChange(
-                                  tabValue,
-                                  "dateOfBirth",
-                                  e.target.value ? new Date(e.target.value) : ""
-                              )
-                          }
-                          className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
-                          required
-                          disabled={!isImageUploaded}
+                        type="date"
+                        value={
+                          visaRequests.visaRequest[tabValue].request.visa
+                            .dateOfBirth
+                            ? dayjs(
+                                visaRequests.visaRequest[tabValue].request.visa
+                                  .dateOfBirth
+                              ).format("YYYY-MM-DD")
+                            : ""
+                        }
+                        onChange={(e) =>
+                          handleFormChange(
+                            tabValue,
+                            "dateOfBirth",
+                            e.target.value ? new Date(e.target.value) : ""
+                          )
+                        }
+                        className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
+                        required
+                        disabled={!isImageUploaded}
                       />
                     </div>
                   </div>
@@ -690,22 +692,22 @@ const PassportForm = ({ purposeOfVisit, setStage }) => {
                       Place of Birth
                     </label>
                     <input
-                        type="text"
-                        placeholder="Place of Birth"
-                        value={
-                          visaRequests.visaRequest[tabValue].request.visa
-                              .placeOfBirth
-                        }
-                        onChange={(e) =>
-                            handleFormChange(
-                                tabValue,
-                                "placeOfBirth",
-                                e.target.value
-                            )
-                        }
-                        className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
-                        required
-                        disabled={!isImageUploaded}
+                      type="text"
+                      placeholder="Place of Birth"
+                      value={
+                        visaRequests.visaRequest[tabValue].request.visa
+                          .placeOfBirth
+                      }
+                      onChange={(e) =>
+                        handleFormChange(
+                          tabValue,
+                          "placeOfBirth",
+                          e.target.value
+                        )
+                      }
+                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
+                      required
+                      disabled={!isImageUploaded}
                     />
                   </div>
 
@@ -715,26 +717,26 @@ const PassportForm = ({ purposeOfVisit, setStage }) => {
                         Issue Date
                       </label>
                       <input
-                          type="date"
-                          value={
-                            visaRequests.visaRequest[tabValue].request.visa
-                                .issueDate
-                                ? dayjs(
-                                    visaRequests.visaRequest[tabValue].request.visa
-                                        .issueDate
-                                ).format("YYYY-MM-DD")
-                                : ""
-                          }
-                          onChange={(e) =>
-                              handleFormChange(
-                                  tabValue,
-                                  "issueDate",
-                                  e.target.value ? new Date(e.target.value) : ""
-                              )
-                          }
-                          className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
-                          required
-                          disabled={!isImageUploaded}
+                        type="date"
+                        value={
+                          visaRequests.visaRequest[tabValue].request.visa
+                            .issueDate
+                            ? dayjs(
+                                visaRequests.visaRequest[tabValue].request.visa
+                                  .issueDate
+                              ).format("YYYY-MM-DD")
+                            : ""
+                        }
+                        onChange={(e) =>
+                          handleFormChange(
+                            tabValue,
+                            "issueDate",
+                            e.target.value ? new Date(e.target.value) : ""
+                          )
+                        }
+                        className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
+                        required
+                        disabled={!isImageUploaded}
                       />
                     </div>
                     <div className="space-y-2">
@@ -742,26 +744,26 @@ const PassportForm = ({ purposeOfVisit, setStage }) => {
                         Expiry Date
                       </label>
                       <input
-                          type="date"
-                          value={
-                            visaRequests.visaRequest[tabValue].request.visa
-                                .expiryDate
-                                ? dayjs(
-                                    visaRequests.visaRequest[tabValue].request.visa
-                                        .expiryDate
-                                ).format("YYYY-MM-DD")
-                                : ""
-                          }
-                          onChange={(e) =>
-                              handleFormChange(
-                                  tabValue,
-                                  "expiryDate",
-                                  e.target.value ? new Date(e.target.value) : ""
-                              )
-                          }
-                          className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
-                          required
-                          disabled={!isImageUploaded}
+                        type="date"
+                        value={
+                          visaRequests.visaRequest[tabValue].request.visa
+                            .expiryDate
+                            ? dayjs(
+                                visaRequests.visaRequest[tabValue].request.visa
+                                  .expiryDate
+                              ).format("YYYY-MM-DD")
+                            : ""
+                        }
+                        onChange={(e) =>
+                          handleFormChange(
+                            tabValue,
+                            "expiryDate",
+                            e.target.value ? new Date(e.target.value) : ""
+                          )
+                        }
+                        className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
+                        required
+                        disabled={!isImageUploaded}
                       />
                     </div>
                   </div>
@@ -771,18 +773,18 @@ const PassportForm = ({ purposeOfVisit, setStage }) => {
                       Passport Issue Place
                     </label>
                     <input
-                        type="text"
-                        placeholder="Passport Issue Place"
-                        value={
-                          visaRequests.visaRequest[tabValue].request.visa
-                              .issuePlace
-                        }
-                        onChange={(e) =>
-                            handleFormChange(tabValue, "issuePlace", e.target.value)
-                        }
-                        className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
-                        required
-                        disabled={!isImageUploaded}
+                      type="text"
+                      placeholder="Passport Issue Place"
+                      value={
+                        visaRequests.visaRequest[tabValue].request.visa
+                          .issuePlace
+                      }
+                      onChange={(e) =>
+                        handleFormChange(tabValue, "issuePlace", e.target.value)
+                      }
+                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
+                      required
+                      disabled={!isImageUploaded}
                     />
                   </div>
 
@@ -792,86 +794,86 @@ const PassportForm = ({ purposeOfVisit, setStage }) => {
                     </h3>
                     <div className="space-y-4">
                       <input
-                          type="text"
-                          placeholder="Address Line 1"
-                          value={
-                            visaRequests.visaRequest[tabValue].request.visa
-                                .addressLine1
-                          }
-                          onChange={(e) =>
-                              handleFormChange(
-                                  tabValue,
-                                  "addressLine1",
-                                  e.target.value
-                              )
-                          }
-                          className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
-                          required
-                          disabled={!isImageUploaded}
+                        type="text"
+                        placeholder="Address Line 1"
+                        value={
+                          visaRequests.visaRequest[tabValue].request.visa
+                            .addressLine1
+                        }
+                        onChange={(e) =>
+                          handleFormChange(
+                            tabValue,
+                            "addressLine1",
+                            e.target.value
+                          )
+                        }
+                        className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
+                        required
+                        disabled={!isImageUploaded}
                       />
                       <input
-                          type="text"
-                          placeholder="Address Line 2"
-                          value={
-                            visaRequests.visaRequest[tabValue].request.visa
-                                .addressLine2
-                          }
-                          onChange={(e) =>
-                              handleFormChange(
-                                  tabValue,
-                                  "addressLine2",
-                                  e.target.value
-                              )
-                          }
-                          className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
-                          required
-                          disabled={!isImageUploaded}
+                        type="text"
+                        placeholder="Address Line 2"
+                        value={
+                          visaRequests.visaRequest[tabValue].request.visa
+                            .addressLine2
+                        }
+                        onChange={(e) =>
+                          handleFormChange(
+                            tabValue,
+                            "addressLine2",
+                            e.target.value
+                          )
+                        }
+                        className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
+                        required
+                        disabled={!isImageUploaded}
                       />
                       <div className="grid md:grid-cols-3 gap-4">
                         <input
-                            type="text"
-                            placeholder="State"
-                            value={
-                              visaRequests.visaRequest[tabValue].request.visa
-                                  .state
-                            }
-                            onChange={(e) =>
-                                handleFormChange(tabValue, "state", e.target.value)
-                            }
-                            className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
-                            required
-                            disabled={!isImageUploaded}
+                          type="text"
+                          placeholder="State"
+                          value={
+                            visaRequests.visaRequest[tabValue].request.visa
+                              .state
+                          }
+                          onChange={(e) =>
+                            handleFormChange(tabValue, "state", e.target.value)
+                          }
+                          className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
+                          required
+                          disabled={!isImageUploaded}
                         />
                         <input
-                            type="text"
-                            placeholder="City"
-                            value={
-                              visaRequests.visaRequest[tabValue].request.visa.city
-                            }
-                            onChange={(e) =>
-                                handleFormChange(tabValue, "city", e.target.value)
-                            }
-                            className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
-                            required
-                            disabled={!isImageUploaded}
+                          type="text"
+                          placeholder="City"
+                          value={
+                            visaRequests.visaRequest[tabValue].request.visa.city
+                          }
+                          onChange={(e) =>
+                            handleFormChange(tabValue, "city", e.target.value)
+                          }
+                          className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
+                          required
+                          disabled={!isImageUploaded}
                         />
                         <input
-                            type="text"
-                            placeholder="Pincode"
-                            value={
-                              visaRequests.visaRequest[tabValue].request.visa
-                                  .pincode
-                            }
-                            onChange={(e) =>
-                                handleFormChange(
-                                    tabValue,
-                                    "pincode",
-                                    e.target.value
-                                )
-                            }
-                            className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
-                            required
-                            disabled={!isImageUploaded}
+                          type="text"
+                          placeholder="Pincode"
+                          value={
+                            visaRequests.visaRequest[tabValue].request.visa
+                              .pincode
+                          }
+                          onChange={(e) =>
+                            handleFormChange(
+                              tabValue,
+                              "pincode",
+                              e.target.value
+                            )
+                          }
+                          className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
+                          required
+                          disabled={!isImageUploaded}
                         />
                       </div>
                     </div>
@@ -883,17 +885,17 @@ const PassportForm = ({ purposeOfVisit, setStage }) => {
                         Mobile Number
                       </label>
                       <input
-                          type="text"
-                          placeholder="Mobile Number"
-                          value={
-                            visaRequests.visaRequest[tabValue].request.visa.mobile
-                          }
-                          onChange={(e) =>
-                              handleFormChange(tabValue, "mobile", e.target.value)
-                          }
-                          className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
-                          required
-                          disabled={!isImageUploaded}
+                        type="text"
+                        placeholder="Mobile Number"
+                        value={
+                          visaRequests.visaRequest[tabValue].request.visa.mobile
+                        }
+                        onChange={(e) =>
+                          handleFormChange(tabValue, "mobile", e.target.value)
+                        }
+                        className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
+                        required
+                        disabled={!isImageUploaded}
                       />
                     </div>
                     <div className="space-y-2">
@@ -901,31 +903,29 @@ const PassportForm = ({ purposeOfVisit, setStage }) => {
                         Email Address
                       </label>
                       <input
-                          type="email"
-                          placeholder="Email Address"
-                          value={
-                            visaRequests.visaRequest[tabValue].request.visa.email
-                          }
-                          onChange={(e) =>
-                              handleFormChange(tabValue, "email", e.target.value)
-                          }
-                          className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
-                          required
-                          disabled={!isImageUploaded}
+                        type="email"
+                        placeholder="Email Address"
+                        value={
+                          visaRequests.visaRequest[tabValue].request.visa.email
+                        }
+                        onChange={(e) =>
+                          handleFormChange(tabValue, "email", e.target.value)
+                        }
+                        className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
+                        required
+                        disabled={!isImageUploaded}
                       />
                     </div>
                   </div>
 
                   <div>
                     <button
-                        type="submit"
-                        className="w-full bg-blue-500 text-white py-3 px-4 rounded-lg hover:bg-blue-600 focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 transition duration-200 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed font-medium"
-                        disabled={!isImageUploaded}
+                      type="submit"
+                      className="w-full bg-blue-500 text-white py-3 px-4 rounded-lg hover:bg-blue-600 focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 transition duration-200 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+                      disabled={!isImageUploaded}
                     >
                       Submit Application
                     </button>
-
-
                   </div>
                 </form>
               </>
@@ -934,9 +934,9 @@ const PassportForm = ({ purposeOfVisit, setStage }) => {
         </div>
       </div>
       <ConfirmChoiceModal
-          open={isModalOpen}
-          onClose={handleCloseModal}
-          onConfirm={handleConfirm}
+        open={isModalOpen}
+        onClose={handleCloseModal}
+        onConfirm={handleConfirm}
       />
     </div>
   );

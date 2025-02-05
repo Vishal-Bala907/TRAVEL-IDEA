@@ -12,13 +12,15 @@ import TextField from "@mui/material/TextField"; // Added TextField import
 import { submitVisaRequest } from "../server/basic/basic";
 import { toast } from "react-toastify";
 import ConfirmChoiceModal from '../confirmChoiceModal/ConfirmChoiceModal'
+import { confirmAlert } from "react-confirm-alert";
+
 
 function AddVisitDetails({ setReqId, setStage, id }) {
   const [visitDetails, setVisitDetails] = useState("");
   const [appointmentDate, setAppointmentDate] = useState(null);
   const [error, setError] = useState("");
   const visaRequests = useSelector((state) => state.visaRequest.visaRequests);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const dispatch = useDispatch();
   const Id = id;
   const visas = useSelector((state) => state.visas?.visas || []);
@@ -26,29 +28,39 @@ function AddVisitDetails({ setReqId, setStage, id }) {
 
   const appointmentFees = visabyId?.embassyFees?.appointmentFees;
   console.log("appointmentFees", appointmentFees);
-  //   const [reqId, setReqId] = useState(null);
 
-    const handleOpenModal = () => {
-        setIsModalOpen(true);
-    };
 
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
-    };
-    const handleConfirm = () => {
+    // modal for confirmation
+     const handleConfirmMarkCompleted = () => {
+    
+       if (!visitDetails) {
+         setError("Please fill in the visit details.");
+         return;
+       }
+   
+       // Only validate appointmentDate if appointmentFees is greater than 0
+       if (appointmentFees > 0 && !appointmentDate) {
+         setError("Please select an appointment date.");
+         return;
+       }
+        confirmAlert({
+          title: "Confirmation Required",
+          message: "Are you sure you want to save these details? Once saved, they cannot be edited.",
+          buttons: [
+            {
+              label: "Confirm",
+              onClick: () => handleSubmit(),
+            },
+            {
+              label: "Cancel",
+            },
+          ],
+        });
 
-    };
+    
+      };
+
   const handleSubmit = async () => {
-    if (!visitDetails) {
-      setError("Please fill in the visit details.");
-      return;
-    }
-
-    // Only validate appointmentDate if appointmentFees is greater than 0
-    if (appointmentFees > 0 && !appointmentDate) {
-      setError("Please select an appointment date.");
-      return;
-    }
 
     // Convert the selected date to an ISO string using dayjs
     const isoDateString = appointmentDate
@@ -115,17 +127,16 @@ function AddVisitDetails({ setReqId, setStage, id }) {
           )}
           {error && <p style={{ color: "red" }}>{error}</p>}
           <Box sx={{ display: "block", mt: 2 }}>
-            <Button onClick={handleSubmit} variant="contained" color="primary">
+            <Button
+              onClick={handleConfirmMarkCompleted}
+              variant="contained"
+              color="primary"
+            >
               Submit Details
             </Button>
           </Box>
         </Box>
       </Box>
-        <ConfirmChoiceModal
-            open={isModalOpen}
-            onClose={handleCloseModal}
-            onConfirm={handleConfirm}
-        />
     </LocalizationProvider>
   );
 }

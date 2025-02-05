@@ -25,7 +25,7 @@ export default function Steps({ id }) {
   }, [stage]);
   return (
     <Box className="w-full max-w-4xl mx-auto p-4">
-      <Accordion expanded={stage >= 1}>
+      <Accordion expanded={stage == 1}>
         <AccordionSummary
           expandIcon={stage >= 1 ? "" : <FaLock />}
           aria-controls="panel1a-content"
@@ -38,7 +38,7 @@ export default function Steps({ id }) {
         </AccordionDetails>
       </Accordion>
 
-      <Accordion expanded={stage >= 2} disabled={stage < 2}>
+      <Accordion expanded={stage == 2} disabled={stage < 2}>
         <AccordionSummary
           expandIcon={stage >= 2 ? "" : <FaLock />}
           aria-controls="panel2a-content"
@@ -53,7 +53,7 @@ export default function Steps({ id }) {
         </AccordionDetails>
       </Accordion>
 
-      <Accordion expanded={stage >= 3} disabled={stage < 3}>
+      <Accordion expanded={stage == 3} disabled={stage < 3}>
         <AccordionSummary
           expandIcon={stage >= 3 ? "" : <FaLock />}
           aria-controls="panel3a-content"
@@ -73,7 +73,7 @@ export default function Steps({ id }) {
         </AccordionDetails>
       </Accordion>
 
-      <Accordion expanded={stage >= 4} disabled={stage < 4}>
+      <Accordion expanded={stage == 4} disabled={stage < 4}>
         <AccordionSummary
           expandIcon={stage >= 4 ? "" : <FaLock />}
           aria-controls="panel4a-content"
