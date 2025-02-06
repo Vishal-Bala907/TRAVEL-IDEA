@@ -11,11 +11,11 @@ import { useDispatch } from "react-redux";
 import { addVisaRequest } from "../redux/slices/VisaRequest";
 import "react-toastify/dist/ReactToastify.css";
 import "./PassportForm.css";
-const VITE_API_URL = "f16a94a303ef3ed524348cd85534f639";
+const VITE_API_URL = "71aca09a4aa6bc2aeabe758dab1e8fc4";
 // const VITE_API_URL = "";
 import { uploadImage } from "../server/basic/basic";
-import ConfirmChoiceModal from '../confirmChoiceModal/ConfirmChoiceModal'
-import { FaUpload } from "react-icons/fa"; 
+import ConfirmChoiceModal from "../confirmChoiceModal/ConfirmChoiceModal";
+import { FaUpload } from "react-icons/fa";
 const initialVisaRequestsState = {
   purposeOfVisit: "",
   appointmentDetails: "",
@@ -76,7 +76,6 @@ const PassportForm = ({ purposeOfVisit, setStage }) => {
   };
 
   const handleConfirm = () => {
-
     setStage(2);
     const serializableVisaRequests = {
       ...visaRequests,
@@ -373,8 +372,6 @@ const PassportForm = ({ purposeOfVisit, setStage }) => {
 
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
-
-
 
   return (
     <div className="p-4">
