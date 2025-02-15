@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { addVisaRequest } from "../redux/slices/VisaRequest";
 import "react-toastify/dist/ReactToastify.css";
 import "./PassportForm.css";
-const VITE_API_URL = "71aca09a4aa6bc2aeabe758dab1e8fc4";
+const VITE_API_URL = "dd19b51921b712188d97d761a149491f";
 // const VITE_API_URL = "";
 import { uploadImage } from "../server/basic/basic";
 import ConfirmChoiceModal from "../confirmChoiceModal/ConfirmChoiceModal";

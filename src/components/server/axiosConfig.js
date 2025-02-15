@@ -29,6 +29,7 @@ apiClient.interceptors.response.use(
       if (status === 400 || status === 401) {
         // localStorage.removeItem("token");
         // alert("emmittig");
+
         eventEmitter.emit("sessionExpired");
       }
     }
