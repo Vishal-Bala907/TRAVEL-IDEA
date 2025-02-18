@@ -14,6 +14,7 @@ import Paper from "@mui/material/Paper";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { differenceInYears } from "date-fns";
+//! create payment is called twice one for success and one for failure but we are only showing failed as success as payment is done in admin panel 
 import {
   createPayment,
   makePayment,
@@ -166,6 +167,7 @@ const MakePayment = ({ reqId, setStage, id }) => {
             mobileNumber: phone,
           };
 
+          // First usage: Log failed payment attempt
           createPayment(details)
             .then((data) => {
               console.log(data);
@@ -194,6 +196,7 @@ const MakePayment = ({ reqId, setStage, id }) => {
       mobileNumber: phone,
     };
 
+    // Second usage: Log successful payment attempt
     createPayment(details)
       .then((data) => {
         sendTheMail(paymentId, orderId, NetTotal);
@@ -203,23 +206,21 @@ const MakePayment = ({ reqId, setStage, id }) => {
         return err;
       });
   }
-async function sendTheMail(paymentId, orderId, NetTotal) {
-  const messageBody = {
-    recipient: email,
-    msgBody: `Dear ${name},\n\nThank you for choosing TravelIdea. We are pleased to inform you that your payment has been successfully processed.\n\nYour payment ID is ${paymentId} and your order ID is ${orderId}. The net total for your order is ${NetTotal}.\n\nIf you have any questions or need further assistance, please do not hesitate to contact us.\n\nBest regards,\nThe TravelIdea Team`,
-    subject: "Payment Confirmation",
-  };
+  async function sendTheMail(paymentId, orderId, NetTotal) {
+    const messageBody = {
+      recipient: email,
+      msgBody: `Dear ${name},\n\nThank you for choosing TravelIdea. We are pleased to inform you that your payment has been successfully processed.\n\nYour payment ID is ${paymentId} and your order ID is ${orderId}. The net total for your order is ${NetTotal}.\n\nIf you have any questions or need further assistance, please do not hesitate to contact us.\n\nBest regards,\nThe TravelIdea Team`,
+      subject: "Payment Confirmation",
+    };
 
-  sendMail(messageBody)
-    .then((data) => {
-      console.log("mail status:",data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
-
-
+    sendMail(messageBody)
+      .then((data) => {
+        console.log("mail status:", data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   return (
     <>
