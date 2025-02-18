@@ -20,7 +20,7 @@ const page = () => {
     }
     loginHandler({ mobileNumber })
       .then((data) => {
-        localStorage.setItem("token", data.token);
+        localStorage.setItem("tvi-token", data.token);
         localStorage.setItem("time", new Date().getTime());
         dispatch(
           loginUser({

@@ -21,7 +21,7 @@ export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const TOKEN = localStorage.getItem("token");
+    const TOKEN = localStorage.getItem("tvi-token");
     // console.log(TOKEN);
     if (!TOKEN) {
       router.push("/login");

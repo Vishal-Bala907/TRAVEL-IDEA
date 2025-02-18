@@ -72,7 +72,7 @@ const Profile = ({ showProfile, setShowProfile }) => {
   const router = useRouter();
   const handleLogout = () => {
     // Handle logout logic here (e.g., API call)
-    localStorage.removeItem("token");
+    localStorage.removeItem("tvi-token");
     dispatch(logoutUser());
     router.push("/login");
   };

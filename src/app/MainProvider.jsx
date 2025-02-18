@@ -10,7 +10,7 @@ const MainProvider = ({ children }) => {
   const router = useRouter();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("tvi-token");
     if (!token && router.pathname !== "/login") {
       // Redirect to login page if token is not available
       // router.push("/login");

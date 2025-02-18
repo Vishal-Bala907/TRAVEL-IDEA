@@ -23,7 +23,7 @@ const SessionListener = () => {
 
     // alert("hellow")
 
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("tvi-token");
     if (!token) return;
 
     const decodedPayload = decodeJWT(token);
@@ -43,7 +43,7 @@ const SessionListener = () => {
           {
             label: "Yes",
             onClick: () => {
-              localStorage.removeItem("token");
+              localStorage.removeItem("tvi-token");
               setAlertShown(false); // Reset flag
               router.push("/login");
             },
