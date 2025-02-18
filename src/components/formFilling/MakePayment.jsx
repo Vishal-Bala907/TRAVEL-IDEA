@@ -18,6 +18,7 @@ import {
   createPayment,
   makePayment,
   submitVisaRequest,
+  sendMail,
 } from "../server/basic/basic";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
@@ -108,6 +109,7 @@ const MakePayment = ({ reqId, setStage, id }) => {
       alert("Razorpay SDK not loaded. Please check your internet connection.");
       return;
     }
+
     // console.log("total amt", NetTotal);
     // const response = await makePayment(NetTotal);
     // console.log(response);
@@ -130,7 +132,7 @@ const MakePayment = ({ reqId, setStage, id }) => {
             const sigId = response.razorpay_signature;
             paymentSuccessFull(paymentId, orderId, sigId, NetTotal)
               .then((data) => {
-                router.push('/')
+                router.push("/");
                 toast.success("payment sucessfull... 😀😀", {
                   position: "top-right",
                 });
@@ -194,12 +196,30 @@ const MakePayment = ({ reqId, setStage, id }) => {
 
     createPayment(details)
       .then((data) => {
+        sendTheMail(paymentId, orderId, NetTotal);
         return data;
       })
       .catch((err) => {
         return err;
       });
   }
+async function sendTheMail(paymentId, orderId, NetTotal) {
+  const messageBody = {
+    recipient: email,
+    msgBody: `Dear ${name},\n\nThank you for choosing TravelIdea. We are pleased to inform you that your payment has been successfully processed.\n\nYour payment ID is ${paymentId} and your order ID is ${orderId}. The net total for your order is ${NetTotal}.\n\nIf you have any questions or need further assistance, please do not hesitate to contact us.\n\nBest regards,\nThe TravelIdea Team`,
+    subject: "Payment Confirmation",
+  };
+
+  sendMail(messageBody)
+    .then((data) => {
+      console.log("mail status:",data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+
 
   return (
     <>

@@ -161,6 +161,17 @@ export const createPayment = async (details) => {
     throw err;
   }
 };
+export const sendMail = async (details) => {
+  // console.log(visaRequest2);
+
+  try {
+    const response = await apiClient.post(`/mail/sendMail`, details);
+    // console.log(response);
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
+};
 
 export const getUserVisaHistory = async (number, currentPage) => {
   // console.log(visaRequest2);
