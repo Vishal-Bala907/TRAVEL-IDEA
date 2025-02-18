@@ -11,8 +11,8 @@ import { useDispatch } from "react-redux";
 import { addVisaRequest } from "../redux/slices/VisaRequest";
 import "react-toastify/dist/ReactToastify.css";
 import "./PassportForm.css";
-const VITE_API_URL = "dd19b51921b712188d97d761a149491f";
-// const VITE_API_URL = "";
+const MINDEE_API_KEY = process.env.NEXT_PUBLIC_MINDEE_API_KEY;
+// const MINDEE_API_KEY = "";
 import { uploadImage } from "../server/basic/basic";
 import ConfirmChoiceModal from "../confirmChoiceModal/ConfirmChoiceModal";
 import { FaUpload } from "react-icons/fa";
@@ -168,7 +168,7 @@ const PassportForm = ({ purposeOfVisit, setStage }) => {
         `https://api.mindee.net/v1/products/mindee/ind_passport/v1/documents/queue/${id}`,
         {
           headers: {
-            Authorization: `Token ${VITE_API_URL}`,
+            Authorization: `Token ${MINDEE_API_KEY}`,
           },
         }
       );
@@ -229,7 +229,7 @@ const PassportForm = ({ purposeOfVisit, setStage }) => {
           formData,
           {
             headers: {
-              Authorization: `Token ${VITE_API_URL}`,
+              Authorization: `Token ${MINDEE_API_KEY}`,
             },
           }
         );
