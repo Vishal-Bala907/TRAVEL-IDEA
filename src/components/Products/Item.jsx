@@ -10,7 +10,7 @@ const Item = ({ item }) => {
   };
   return (
     <div
-      className="bg-white rounded-lg  hover:shadow-2xl hover:cursor-pointer hover:scale-105 transition duration-200 transform "
+      className="bg-white rounded-lg  hover:shadow-2xl hover:cursor-pointer hover:scale-105 transition duration-200 transform h-fit "
       onClick={() => handleStartClick(item)}
     >
       <div className="relative">

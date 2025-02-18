@@ -20,6 +20,7 @@ import Pagination from "../archivedVisas/Pagination";
 import { markVisaCompleted } from "../server/admin/admin";
 import { toast } from "react-toastify";
 import {confirmAlert} from "react-confirm-alert";
+import { BiSolidHourglass } from "react-icons/bi";
 const VisaHistory = ({ status }) => {
   //   console.log("status prop:", status); // Debugging
 
@@ -33,7 +34,7 @@ const VisaHistory = ({ status }) => {
   const [loading, setLoading] = useState(false);
   const [selectedVisa, setSelectedVisa] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
-  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  
 
   const handleConfirmMarkCompleted = (visa) => {
 
@@ -50,7 +51,7 @@ const VisaHistory = ({ status }) => {
         },
       ],
     });
-    setIsConfirmModalOpen(false);
+
 
   };
 
@@ -155,6 +156,11 @@ const VisaHistory = ({ status }) => {
                 ) : (
                   ""
                 )}
+                {role === "ROLE_USER" && (
+                  <th className="border px-4 py-3 text-left text-sm font-semibold text-gray-700">
+                    Visa Status
+                  </th>
+                )}
               </tr>
             </thead>
             <tbody>
@@ -190,18 +196,32 @@ const VisaHistory = ({ status }) => {
                     </button>
                   </td>
                   {status === "pending" && (
-                      <td className="border px-4 py-3 text-sm">
+                    <td className="border px-4 py-3 text-sm">
                       <button
                         onClick={() => {
                           handleConfirmMarkCompleted(visa);
-                          setIsConfirmModalOpen(true);
                         }}
                         className="flex items-center justify-center px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors"
                       >
                         <FaRegCircleCheck className="mr-2" />
                         Mark As Completed
                       </button>
-                      </td>
+                    </td>
+                  )}
+                  {role === "ROLE_USER" && (
+                    <td className="border px-4 py-3 text-sm">
+                      <span className="flex items-center justify-center px-4 py-2 text-blue-600 rounded-md">
+                        {visa.completionStatus === true ? (
+                          <span className="text-green-600 flex flex-nowrap justify-center items-center">
+                            <FaRegCircleCheck className="mr-2" /> {"completed"}
+                          </span>
+                        ) : visa.completionStatus === false ? (
+                          <span className="text-yellow-600 flex flex-nowrap justify-center items-center">
+                            <BiSolidHourglass className="mr-2" /> {"pending"}
+                          </span>
+                        ) : <span> Error </span>}
+                      </span>
+                    </td>
                   )}
                 </tr>
               ))}
