@@ -7,8 +7,9 @@ import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import { useDispatch } from "react-redux";
 import { addVisaTypes } from "../redux/slices/VisaTypeSlice";
+import { toast } from "react-toastify";
 
-const AddVisaType = () => {
+const AddVisaType = ({ setSpinnerLoading }) => {
   const {
     control,
     handleSubmit,
@@ -25,15 +26,26 @@ const AddVisaType = () => {
         label: "Yes",
         onClick: () => {
           if (data && data.visaTypeName) {
+            setSpinnerLoading(true);
             // Proceed with adding the visa type
             addVisaType({
               visaType: data.visaTypeName, // Assuming `visaTypeName` is the data to be sent
             })
               .then((response) => {
                 dispatch(addVisaTypes(response));
+                toast.success(
+                  "visa Added Successfully... , Please Refresh the page to view changes",
+                  {
+                    position: "top-left",
+                  }
+                );
               })
               .catch((err) => {
                 console.error("Error adding visa type:", err);
+                toast.error("Unable to add Visa... 🙁🙁🙁");
+              })
+              .finally(() => {
+                setSpinnerLoading(false);
               });
           } else {
             console.error("No visaTypeName found in the data");

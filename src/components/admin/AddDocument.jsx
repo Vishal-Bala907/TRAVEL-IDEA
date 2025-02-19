@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { TextField, Box, Typography, Button } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 import { addNewDocumentType } from "../server/admin/admin";
-
-const AddDocument = () => {
+import CircleSpinner from "../spinner/CircleSpinner";
+import { toast } from "react-toastify";
+const AddDocument = ({ setSpinnerLoading }) => {
   const {
     control,
     handleSubmit,
@@ -12,16 +13,31 @@ const AddDocument = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+    setSpinnerLoading(true);
+
     addNewDocumentType({
       documentName: data.documentTypeName,
     })
       .then((data) => {
         reset();
+        toast.success(
+          "Document Added... , Please Refresh the page to view changes",
+          {
+            position: "top-left",
+          }
+        );
       })
       .catch((err) => {
         console.log(err);
+        toast.error("Unable to add Document... 🙁🙁🙁");
+      })
+      .finally(() => {
+        setSpinnerLoading(false);
       });
   };
+  // if (loading) {
+  //   return <CircleSpinner />;
+  // }
 
   return (
     <Box

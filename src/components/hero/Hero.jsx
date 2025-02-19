@@ -68,6 +68,7 @@ const Hero = () => {
       opacity: 0,
       duration: 2,
       repeat: -1,
+      ease: "sine.inOut",
     });
   }, []);
 

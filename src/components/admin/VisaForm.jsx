@@ -26,6 +26,7 @@ import { toast } from "react-toastify";
 import { getAllDocuments } from "../server/basic/basic";
 import { FcMoneyTransfer } from "react-icons/fc";
 import { animate } from "motion";
+import CircleSpinner from "../spinner/CircleSpinner";
 
 const tagOptions = [
   "Popular",
@@ -81,6 +82,7 @@ const VisaForm = () => {
     reset,
     formState: { errors },
   } = useForm();
+  const [isSpinnerLoading, setSpinnerLoading] = useState(false);
   const [selectedDocuments, setSelectedDocuments] = useState([]);
   const [bannerImage, setBannerImage] = useState(null);
   const [selectedTags, setSelectedTags] = useState("");
@@ -171,8 +173,14 @@ const VisaForm = () => {
   return (
     <main>
       <section className="flex justify-center items-center bg-blue-100 py-5">
-        <AddVisaType />
-        <AddDocument />
+        {isSpinnerLoading ? (
+          <CircleSpinner />
+        ) : (
+          <div className="flex justify-center items-center bg-blue-100 py-5">
+            <AddVisaType setSpinnerLoading={setSpinnerLoading} />
+            <AddDocument setSpinnerLoading={setSpinnerLoading} />
+          </div>
+        )}
       </section>
       <section className="flex justify-center gap-4 bg-slate-200 my-5 pt-3 align-center flex-wrap relative">
         <Box
