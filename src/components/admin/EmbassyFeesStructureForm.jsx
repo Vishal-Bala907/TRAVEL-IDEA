@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { TextField, Button, Typography, Divider } from "@mui/material";
+import Image from "next/image";
+// import close from "/img/close.png";
 
-const EmbassyFeesStructureForm = ({ onSubmit }) => {
+const EmbassyFeesStructureForm = ({ handleFormVisiblity, onSubmit }) => {
   const [appointmentFees, setAppointmentFees] = useState("");
   const [ageRanges, setAgeRanges] = useState([
     { minAge: "", maxAge: "", fees: "" },
@@ -34,7 +36,7 @@ const EmbassyFeesStructureForm = ({ onSubmit }) => {
   };
 
   return (
-    <div className="flex flex-col items-center p-6 bg-gray-50 min-h-screen my-5">
+    <div className="flex flex-col items-center p-6 backdrop-blur-lg rounded-lg border border-black bg-transparent min-h-screen my-5 max-h-[100%] overflow-y-auto relative custom-scrollbar">
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-md bg-white p-6 shadow-lg rounded-md"
@@ -104,6 +106,14 @@ const EmbassyFeesStructureForm = ({ onSubmit }) => {
           Add Fees
         </Button>
       </form>
+      <div
+        className="absolute top-6 left-6 cursor-pointer"
+        onClick={() => {
+          handleFormVisiblity();
+        }}
+      >
+        <Image src="/img/close.png" height={48} width={48} alt="close image" />
+      </div>
     </div>
   );
 };

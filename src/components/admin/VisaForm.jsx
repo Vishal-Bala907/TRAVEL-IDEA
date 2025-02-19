@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   TextField,
   Button,
@@ -14,7 +14,6 @@ import {
   InputLabel,
   FormControl,
 } from "@mui/material";
-// import Grid2 from "@mui/material/Unstable_Grid2";
 import Grid2 from "@mui/material/Grid2";
 import { useForm, Controller } from "react-hook-form";
 import AddDocument from "./AddDocument";
@@ -25,6 +24,8 @@ import { addNewVisa } from "../server/admin/admin";
 import EmbassyFeesStructureForm from "./EmbassyFeesStructureForm";
 import { toast } from "react-toastify";
 import { getAllDocuments } from "../server/basic/basic";
+import { FcMoneyTransfer } from "react-icons/fc";
+import { animate } from "motion";
 
 const tagOptions = [
   "Popular",
@@ -38,8 +39,34 @@ const tagOptions = [
 const VisaForm = () => {
   const visaTypeOptions = useSelector((state) => state.visaType.visaType);
   const [documentOptions, setDocumentOptions] = useState([]);
+  const [showFeesForm, setShowFeesForm] = useState(true); // State to control form visibility
+  const feeFormRef = useRef();
+
+  const handleFormVisiblity = () => {
+    setShowFeesForm(!showFeesForm);
+    if (showFeesForm) {
+      // display the form
+      if (feeFormRef.current) {
+        animate(
+          feeFormRef.current,
+          { opacity: 0, display: "none" },
+          { duration: 0.5 }
+        );
+      }
+    } else {
+      // hide the form
+      if (feeFormRef.current) {
+        animate(
+          feeFormRef.current,
+          { opacity: 1, display: "block" },
+          { duration: 0.5 }
+        );
+      }
+    }
+  };
 
   useEffect(() => {
+    handleFormVisiblity();
     getAllDocuments()
       .then((data) => {
         setDocumentOptions(data);
@@ -65,7 +92,6 @@ const VisaForm = () => {
       toast.error("Please add Fees Structure", {
         position: "top-left",
       });
-
       return;
     }
 
@@ -148,7 +174,7 @@ const VisaForm = () => {
         <AddVisaType />
         <AddDocument />
       </section>
-      <section className="flex justify-center gap-4 bg-slate-200 my-5 pt-3 align-center flex-wrap">
+      <section className="flex justify-center gap-4 bg-slate-200 my-5 pt-3 align-center flex-wrap relative">
         <Box
           component="form"
           onSubmit={handleSubmit(onSubmit)}
@@ -419,8 +445,6 @@ const VisaForm = () => {
                   value={selectedTags}
                   onChange={handleTagChange}
                   className="min-w-[200px]"
-
-                  // renderValue={(selected) => selected.join(", ")}
                 >
                   {tagOptions.map((tag, index) => (
                     <MenuItem key={index} value={tag}>
@@ -430,6 +454,19 @@ const VisaForm = () => {
                 </Select>
               </FormControl>
             </Grid2>
+            <button
+              className="gap-2 bg-cyan-500 flex flex-row py-4 text-white px-6 h-fit rounded-md
+              hover:bg-blue-900 hover:transition-all hover:ease-in-out hover:duration-1000 
+              "
+              onClick={handleFormVisiblity}
+            >
+              <FcMoneyTransfer
+                style={{
+                  fontSize: "x-large",
+                }}
+              />
+              ADD Fees
+            </button>
 
             {/* Submit Button */}
             {feesStructure && (
@@ -453,7 +490,17 @@ const VisaForm = () => {
             )}
           </Grid2>
         </Box>
-        <EmbassyFeesStructureForm onSubmit={handleFessSubmit} />
+        {/* {showFeesForm && ( */}
+        <div
+          ref={feeFormRef}
+          className="absolute top-0 right-0 z-30 h-full md:w-[50%] w-full bg-transparent"
+        >
+          <EmbassyFeesStructureForm
+            handleFormVisiblity={handleFormVisiblity}
+            onSubmit={handleFessSubmit}
+          />
+        </div>
+        {/* )} */}
       </section>
     </main>
   );
