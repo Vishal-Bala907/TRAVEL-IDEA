@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   TextField,
   Button,
@@ -27,6 +27,7 @@ import { getAllDocuments } from "../server/basic/basic";
 import { FcMoneyTransfer } from "react-icons/fc";
 import { animate } from "motion";
 import CircleSpinner from "../spinner/CircleSpinner";
+import FullScreenSpinner from "../spinner/FullScreenSpinner";
 
 const tagOptions = [
   "Popular",
@@ -40,14 +41,16 @@ const tagOptions = [
 const VisaForm = () => {
   const visaTypeOptions = useSelector((state) => state.visaType.visaType);
   const [documentOptions, setDocumentOptions] = useState([]);
-  const [showFeesForm, setShowFeesForm] = useState(true); // State to control form visibility
+  // const [showFeesForm, setShowFeesForm] = useState(true); // State to control form visibility
   const feeFormRef = useRef();
 
-  const handleFormVisiblity = () => {
-    setShowFeesForm(!showFeesForm);
+  const handleFormVisiblity = useCallback((showFeesForm) => {
+
     if (showFeesForm) {
       // display the form
+
       if (feeFormRef.current) {
+
         animate(
           feeFormRef.current,
           { opacity: 0, display: "none" },
@@ -64,10 +67,11 @@ const VisaForm = () => {
         );
       }
     }
-  };
+  }, []);
 
   useEffect(() => {
-    handleFormVisiblity();
+    handleFormVisiblity(true);
+
     getAllDocuments()
       .then((data) => {
         setDocumentOptions(data);
@@ -83,6 +87,7 @@ const VisaForm = () => {
     formState: { errors },
   } = useForm();
   const [isSpinnerLoading, setSpinnerLoading] = useState(false);
+  const [visaLoading, setVisaLoading] = useState(false);
   const [selectedDocuments, setSelectedDocuments] = useState([]);
   const [bannerImage, setBannerImage] = useState(null);
   const [selectedTags, setSelectedTags] = useState("");
@@ -128,6 +133,7 @@ const VisaForm = () => {
     }
 
     // Send the form data to the server
+    setVisaLoading(true);
     addNewVisa(formData)
       .then((response) => {
         // Reset form fields after successful submission
@@ -140,6 +146,10 @@ const VisaForm = () => {
       })
       .catch((error) => {
         console.error(error);
+      })
+      .finally(() => {
+        setVisaLoading(false);
+        handleFormVisiblity(true);
       });
   };
 
@@ -171,7 +181,9 @@ const VisaForm = () => {
   };
 
   return (
-    <main>
+    
+    <main >
+      {visaLoading && <FullScreenSpinner />}
       <section className="flex justify-center items-center bg-blue-100 py-5">
         {isSpinnerLoading ? (
           <CircleSpinner />
@@ -182,6 +194,7 @@ const VisaForm = () => {
           </div>
         )}
       </section>
+
       <section className="flex justify-center gap-4 bg-slate-200 my-5 pt-3 align-center flex-wrap relative">
         <Box
           component="form"
@@ -462,11 +475,13 @@ const VisaForm = () => {
                 </Select>
               </FormControl>
             </Grid2>
-            <button
+            <span
               className="gap-2 bg-cyan-500 flex flex-row py-4 text-white px-6 h-fit rounded-md
               hover:bg-blue-900 hover:transition-all hover:ease-in-out hover:duration-1000 
               "
-              onClick={handleFormVisiblity}
+              onClick={() => {
+                handleFormVisiblity(false);
+              }}
             >
               <FcMoneyTransfer
                 style={{
@@ -474,7 +489,7 @@ const VisaForm = () => {
                 }}
               />
               ADD Fees
-            </button>
+            </span>
 
             {/* Submit Button */}
             {feesStructure && (
@@ -498,7 +513,6 @@ const VisaForm = () => {
             )}
           </Grid2>
         </Box>
-        {/* {showFeesForm && ( */}
         <div
           ref={feeFormRef}
           className="absolute top-0 right-0 z-30 h-full md:w-[50%] w-full bg-transparent"
@@ -508,7 +522,6 @@ const VisaForm = () => {
             onSubmit={handleFessSubmit}
           />
         </div>
-        {/* )} */}
       </section>
     </main>
   );

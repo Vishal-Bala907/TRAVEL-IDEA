@@ -33,6 +33,7 @@ const EmbassyFeesStructureForm = ({ handleFormVisiblity, onSubmit }) => {
         fees: Number(range.fees),
       })),
     });
+    handleFormVisiblity(true);
   };
 
   return (
@@ -109,7 +110,8 @@ const EmbassyFeesStructureForm = ({ handleFormVisiblity, onSubmit }) => {
       <div
         className="absolute top-6 left-6 cursor-pointer"
         onClick={() => {
-          handleFormVisiblity();
+              handleFormVisiblity(true);
+
         }}
       >
         <Image src="/img/close.png" height={48} width={48} alt="close image" />
