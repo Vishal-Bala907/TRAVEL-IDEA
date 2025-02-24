@@ -45,12 +45,10 @@ const VisaForm = () => {
   const feeFormRef = useRef();
 
   const handleFormVisiblity = useCallback((showFeesForm) => {
-
     if (showFeesForm) {
       // display the form
 
       if (feeFormRef.current) {
-
         animate(
           feeFormRef.current,
           { opacity: 0, display: "none" },
@@ -128,8 +126,10 @@ const VisaForm = () => {
 
     // Append the banner image
     if (bannerImage) {
-      console.log(bannerImage);
+      // console.log(bannerImage);
       formData.append("bannerImage", bannerImage);
+    } else {
+      toast.warning("please add a banner image");
     }
 
     // Send the form data to the server
@@ -181,8 +181,7 @@ const VisaForm = () => {
   };
 
   return (
-    
-    <main >
+    <main>
       {visaLoading && <FullScreenSpinner />}
       <section className="flex justify-center items-center bg-blue-100 py-5">
         {isSpinnerLoading ? (
@@ -312,10 +311,11 @@ const VisaForm = () => {
               <input
                 type="file"
                 accept="image/*"
+                name="image"
                 onChange={handleFileChange}
                 style={{ display: "none" }}
                 id="bannerImage"
-                required
+                // required
               />
               <label htmlFor="bannerImage">
                 <Button variant="contained" component="span" fullWidth>
