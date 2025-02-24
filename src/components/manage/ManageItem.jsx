@@ -107,7 +107,7 @@ const ManageItem = ({ documentOptions, visaTypes, item }) => {
               fontSize: "1.5rem",
             }}
           />
-          <RiDeleteBin5Fill
+          {/* <RiDeleteBin5Fill
             className="mb-4 text-red-600 hover:shadow-2xl cursor-pointer"
             style={{
               fontSize: "1.5rem",
@@ -115,7 +115,7 @@ const ManageItem = ({ documentOptions, visaTypes, item }) => {
             onClick={() => {
               handleDelete(item.id);
             }}
-          />
+          /> */}
         </section>
       </div>
       {update && (
