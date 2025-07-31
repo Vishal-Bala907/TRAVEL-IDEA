@@ -172,6 +172,10 @@ const Hero3 = ({ name }) => {
               data-nimg="1"
               className="h-full w-full rounded-lg border border-whitesmoke-700 object-cover"
               src={visaImage}
+              onError={(e) => {
+                e.target.onerror = null; // Prevents infinite loop in case of broken image
+                e.target.src = "https://picsum.photos/200/300"; // Fallback image
+              }}
             />
             <div className="absolute left-4 top-12 flex w-fit items-center rounded-2xl border border-whitesmoke-700 bg-white pl-3 font-inter text-xs text-slategray-200 drop-shadow-2xl md:-left-16">
               <p className="mr-2 font-inter text-base font-extrabold">98%</p>

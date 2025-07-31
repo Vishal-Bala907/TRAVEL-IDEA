@@ -21,6 +21,10 @@ const Item = ({ item }) => {
           style={{
             objectFit: "cover",
           }}
+          onError={(e) => {
+            e.target.onerror = null; // Prevents infinite loop in case of broken image
+            e.target.src = "https://picsum.photos/200/300"; // Fallback image
+          }}
           className="rounded-lg w-[100%] max-h-[200px]"
         />
         {/* <div className="absolute top-2 right-2 bg-yellow-200 text-black px-2 py-1 rounded-xl text-xs">
